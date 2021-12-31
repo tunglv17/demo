@@ -3,14 +3,13 @@ import LayoutAdmin from './layout/Admin'
 import LayoutWebsite from './layout/Website'
 import HomePage from './pages/HomePage'
 import Error404 from './pages/404'
-import ListUsers from './pages/Admin/Users'
-import EditProfile from './pages/Admin/EditProfile'
 import AdminProducts from './pages/Admin/product/AdminProducts'
 import AddProducts from './pages/Admin/product/AddProducts'
 import AddCategory from './pages/Admin/category/AddCategory'
 import EditCategory from './pages/Admin/category/EditCategory'
 import AdminCategory from './pages/Admin/category/AdminCategory'
 import EditProducts from './pages/Admin/product/EditProducts'
+import HeaderWebsite from './components/Header'
 
 
 const Routers = (props) => {
@@ -20,21 +19,14 @@ const Routers = (props) => {
                 <Switch>
                     <Route path="/admin/:path?">
                         <LayoutAdmin>
-                            <Route exact path="/admin/user">
-                            <ListUsers {...props} />
-                            </Route>
-                            <Route exact path="/admin/user/:id">
-                                <EditProfile {...props}/>
-                            </Route>
-                            
                             <Route exact path="/admin/product">
                                 <AdminProducts {...props}/>
                             </Route>
                             <Route exact path="/admin/product/add">
-                                <AddProducts />
+                                <AddProducts {...props}/>
                             </Route>
                             <Route exact path="/admin/product/edit/:id">
-                                <EditProducts />
+                                <EditProducts {...props}/>
                             </Route>
                             <Route exact path="/admin/category">
                                 <AdminCategory />
@@ -49,6 +41,7 @@ const Routers = (props) => {
                     </Route>
                     <Route>
                         <LayoutWebsite>
+                            <HeaderWebsite />
                             <Switch>
                                 <Route exact path="/">
                                     <HomePage {...props} />

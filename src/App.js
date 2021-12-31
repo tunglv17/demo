@@ -1,11 +1,9 @@
 import Routers from "./Routes";
 import React, { useState, useEffect } from "react";
 import "react-datepicker"
-import ProfileAPI from "./API/ProfileAPI";
 import ProductAPI from "./API/ProductAPI";
 function App() {
-  const [profile, setProfile] = useState([])
-  const [products , setProducts] = useState([])
+  const [products, setProducts] = useState([])
 
 
   useEffect(() => {
@@ -18,18 +16,6 @@ function App() {
       }
     }
     getProducts()
-  },[])
-
-  useEffect(() => {
-    const getProfile = async () => {
-      try {
-        const { data } = await ProfileAPI.getAll()
-        setProfile(data)
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    getProfile()
   }, [])
 
 
@@ -42,30 +28,33 @@ function App() {
       console.log(error)
     }
   }
-
-  const onHandleDeleteProfile = async (id) => {
+  const onUpdateProduct = async (id, pro) => {
     try {
-      await ProfileAPI.remove(id)
-      const newProfile = profile.filter(item => item.id !== id)
-      setProfile(newProfile)
-
+      const { data } = await ProductAPI.update(id, pro)
+      const newProduct = products.map(item => item.id === id ? data : item);
+      setProducts(newProduct)
     } catch (error) {
       console.log(error)
-
     }
   }
-  const onUpdateProfile = async (id, pro) => {
+  const onHandleAddProduct = async (data) => {
     try {
-      const { data } = await ProfileAPI.update(id, pro)
-      const newProfile = profile.map(item => item.id === id ? data : item)
-      setProfile(newProfile)
+      await ProductAPI.add(data)
+      setProducts([
+        ...products,
+        data
+      ])
     } catch (error) {
       console.log(error)
     }
   }
   return (
-    <div className="container">
-      <Routers profile={profile} onDelete={onHandleDeleteProfile} onUpdate={onUpdateProfile} listProducts={products} onDeletePro={onHandleDeleteProducts}/>
+    <div className="">
+      <Routers
+        listProducts={products}
+        onUpdatePro={onUpdateProduct}
+        onDeletePro={onHandleDeleteProducts}
+        onAddProduct={onHandleAddProduct} />
     </div>
   );
 }

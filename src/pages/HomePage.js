@@ -4,8 +4,7 @@ import ListProduct from '../components/ListProduct'
 import Seach from '../components/Seach'
 const HomePage = (props) => {
   return (
-    <div>
-      <HeaderWebsite />
+    <div >
       <Seach />
       <ListProduct {...props}/>
     </div>
