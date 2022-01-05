@@ -20,16 +20,16 @@ const Routers = (props) => {
                     <Route path="/admin/:path?">
                         <LayoutAdmin>
                             <Route exact path="/admin/product">
-                                <AdminProducts {...props}/>
+                                <AdminProducts {...props} />
                             </Route>
                             <Route exact path="/admin/product/add">
-                                <AddProducts {...props}/>
+                                <AddProducts {...props} />
                             </Route>
                             <Route exact path="/admin/product/edit/:id">
-                                <EditProducts {...props}/>
+                                <EditProducts {...props} />
                             </Route>
                             <Route exact path="/admin/category">
-                                <AdminCategory />
+                                <AdminCategory {...props} />
                             </Route>
                             <Route exact path="/admin/category/add">
                                 <AddCategory />

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, useHistory } from 'react-router-dom';
 import ProductAPI from '../../../API/ProductAPI';
-import { Button, Form, Input, Modal, Select, Upload } from "antd";
-import { UploadOutlined, InboxOutlined } from '@ant-design/icons';
+import { Button, Form, Input, Select, Upload } from "antd";
+import { UploadOutlined } from '@ant-design/icons';
 const EditProducts = (props) => {
     const [name, setName] = useState({})
     const [category, setCategory] = useState({})
@@ -12,7 +12,7 @@ const EditProducts = (props) => {
     const [rate, setRate] = useState({})
     const { id } = useParams();
     const history = useHistory();
-   
+
     const [form] = Form.useForm();
     const [requiredMark, setRequiredMarkType] = useState("");
 
@@ -51,8 +51,8 @@ const EditProducts = (props) => {
             category: category,
             price: price,
             image: image,
-            rate:rate,
-            description:description
+            rate: rate,
+            description: description
         }
         props.onUpdatePro(newProduct);
         history.push('/admin/product');

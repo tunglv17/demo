@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 const Filter = () => {
- const [range, setRange] = useState("")
+    const [range, setRange] = useState("")
     return (
         <div>
             <div className="navbar">
@@ -42,7 +42,7 @@ const Filter = () => {
                 </div>
                 <div className="range">
                     <h2 className="range-heading">Price Range: ${range}</h2>
-                    <input type="range" min="0" max="100000" onChange={(e) => setRange(e.target.value)}/>
+                    <input type="range" min="0" max="100000" onChange={(e) => setRange(e.target.value)} />
                     <div className="range-price">
                         <span>$0</span>
                         <span>$10.000</span>

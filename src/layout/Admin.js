@@ -1,11 +1,10 @@
 import React from 'react'
 import "antd/dist/antd.css";
 import "./index.css";
-import { Layout, Menu, Breadcrumb } from 'antd';
+import { Layout, Breadcrumb } from 'antd';
 import SiderWebsite from '../components/Sider';
 
-const { Header, Content, Footer, Sider } = Layout;
-const { SubMenu } = Menu;
+const { Header, Content, Footer } = Layout;
 
 const LayoutAdmin = (props) => {
     return (

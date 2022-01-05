@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { Button, Form, Input, Modal, Select, Upload } from "antd";
+import { Button, Form, Input, Select, Upload } from "antd";
 import { useHistory } from 'react-router-dom';
-import { UploadOutlined, InboxOutlined } from '@ant-design/icons';
+import { UploadOutlined } from '@ant-design/icons';
 
 const AddProducts = (props) => {
     const [name, setName] = useState("")
@@ -19,11 +19,9 @@ const AddProducts = (props) => {
     };
     const normFile = (e) => {
         console.log('Upload event:', e);
-
         if (Array.isArray(e)) {
             return e;
         }
-
         return e && e.fileList;
     };
     const history = useHistory()
@@ -33,10 +31,9 @@ const AddProducts = (props) => {
             category: category,
             price: price,
             image: image,
-            description:description,
+            description: description,
             rate: rate
         }
-        console.log(newProduct)
         props.onAddProduct(newProduct)
         history.push('/admin/product');
     }

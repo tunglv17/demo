@@ -2,10 +2,34 @@ import Routers from "./Routes";
 import React, { useState, useEffect } from "react";
 import "react-datepicker"
 import ProductAPI from "./API/ProductAPI";
+import CategoryAPI from "./API/CategoryAPI";
 function App() {
   const [products, setProducts] = useState([])
+  const [category, setCategory] = useState([])
+
+  useEffect(() => {
+    const getCategory = async () => {
+      try {
+        const { data } = await CategoryAPI.getAll()
+        setCategory(data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getCategory()
+  }, [])
 
 
+  const onHandleDelete = async (id) => {
+    try {
+      await CategoryAPI.remove(id)
+      const newCate = category.filter(item => item.id !== id)
+      setCategory(newCate)
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
   useEffect(() => {
     const getProducts = async () => {
       try {
@@ -48,13 +72,22 @@ function App() {
       console.log(error)
     }
   }
+  // const handleFilter = (newFilter) => {
+  //   setProducts({
+  //     ...products,
+  //     title_like: newFilter.seach
+  //   })
+  // }
   return (
     <div className="">
       <Routers
         listProducts={products}
         onUpdatePro={onUpdateProduct}
         onDeletePro={onHandleDeleteProducts}
-        onAddProduct={onHandleAddProduct} />
+        onAddProduct={onHandleAddProduct}
+        listCate={category}
+        onDeleteCate = {onHandleDelete}
+      />
     </div>
   );
 }

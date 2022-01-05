@@ -1,9 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
-import { Layout, Menu, Breadcrumb } from 'antd';
+import { Layout, Menu, } from 'antd';
 import {
-    DesktopOutlined,
-    PieChartOutlined,
     FileOutlined,
     TeamOutlined,
     UserOutlined,
@@ -15,7 +13,7 @@ import {
 
 
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Sider } = Layout;
 const { SubMenu } = Menu;
 
 const SiderWebsite = () => {
